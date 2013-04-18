@@ -468,7 +468,11 @@
         city     : "city" ,
         area     : "area"
       },
-      defaultProvince: "请选择省"
+      default : {
+        province : "请选择省" ,
+        city : "请选择市" ,
+        area : "请选择区"
+      }
     };
     this.selectDom = {
       provinceDom :  $("#" + this.config.selectId.province),
@@ -482,7 +486,7 @@
     renderProvince : function (){
       var proOptions = "" , that = this ;
       $.each(citydata,function(province){
-        if(province === that.config.defaultProvince){
+        if(province === that.config.default.province){
           proOptions += "<option selected value=" + province +">" + province + "</option>";
           that.getCity(province);
         }else{
@@ -494,8 +498,9 @@
     getCity : function(province){
       var provinceTrim = province.trim() ,that = this , cityOptions = "" ;
       if(citydata[provinceTrim]){
-        $.each(citydata[provinceTrim],function(provin){
-          cityOptions += "<option value=" + provin + ">" + provin + "</option>";
+        $.each(citydata[provinceTrim],function(cities){
+          var selected =  cities === that.config.default.city ? "selected" : "" ;
+          cityOptions += "<option " + selected + " value=" + cities + ">" + cities +"</option>";
         }) ;
       }else{
         cityOptions = "<option value=''>请选择市</option>";
@@ -510,8 +515,9 @@
         if(citydata[province][cityTrim].length === 0){
           citydata[province][cityTrim].push("----");
         }
-        $.each(citydata[province][cityTrim],function(index,area){
-          areaOptions += "<option value=" + area + ">" + area + "</option>";
+        $.each(citydata[province][cityTrim],function(index,areas){
+          var selected =  areas === that.config.default.area ? "selected" : "" ;
+          areaOptions += "<option " + selected + " value=" + areas + ">" + areas + "</option>";
         }) ;
       }else{
         areaOptions += "<option value=''>请选择区</option>";
