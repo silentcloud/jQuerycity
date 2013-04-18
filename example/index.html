@@ -19,7 +19,16 @@
     <script type="text/javascript">
         $(function(){
             $("body").jQueryCity({
-                defaultProvince: "海外"
+                selectId : {
+                    province : "province",
+                    city     : "city" ,
+                    area     : "area"
+                },
+                default : {
+                    province : "浙江省" ,
+                    city : "杭州市" ,
+                    area : "西湖区"
+                }
             })
         })
 
