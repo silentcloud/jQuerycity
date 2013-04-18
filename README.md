@@ -10,14 +10,18 @@
 
 ## 使用说明
 
-   **defaultProvince** : 设置默认显示的省<br>
+   **default** : 设置默认显示的省、市、区<br>
    **selectId**: 对应下拉框的dom元素id<br>
 
 ## API
 
     $(function(){
         $("body").jQueryCity({
-            defaultProvince: "海外",
+            default : {
+                province : "浙江省" ,
+                city : "杭州市" ,
+                area : "西湖区"
+            },
             selectId : {
                 province : "province",
                 city     : "city" ,
